@@ -1,0 +1,126 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int number1 = 3;
+        int number2 = 7;
+
+        bool isValidDay = number1 >= 1 && number1 <= 31;
+        bool isValidMonth = number2 >= 1 && number2 <= 12;
+
+        string result;
+
+        if (isValidDay && isValidMonth)
+        {
+            result = "number1 і number2 можуть бути днем і місяцем.";
+        }
+        else
+        {
+            result = "number1 і number2 не можуть бути днем і місяцем.";
+        }
+
+        Console.WriteLine(result);
+
+
+
+        //2
+        double number = 5.75;
+
+        double fraction = number - Math.Floor(number);
+
+        int digit1 = (int)(fraction * 10);
+        int digit2 = (int)((fraction * 100) % 10);
+
+        int sum = digit1 + digit2;
+        Console.WriteLine($"{digit1}+{digit2} = {sum}");
+
+        
+
+        //3
+        Console.Write("Введіть годину (від 0 до 24): ");
+        int hours = int.Parse(Console.ReadLine());
+
+        string greeting;
+        if (hours >= 0 && hours < 5)
+        {
+            greeting = "Доброї ночі!";
+        }
+        else if (hours >= 6 && hours < 12)
+        {
+            greeting = "Доброго ранку!";
+        }
+        else if (hours >= 13 && hours < 17)
+        {
+            greeting = "Добрий день!";
+        }
+        else
+        {
+            greeting = "Добрий вечір!";
+        }
+
+        Console.WriteLine(greeting);
+
+
+         //4
+         int num1, num2, num3;
+
+         Console.Write("Введіть перше число: ");
+         num1 = int.Parse(Console.ReadLine());
+
+         Console.Write("Введіть друге число: ");
+         num2 = int.Parse(Console.ReadLine());
+
+         Console.Write("Введіть третє число: ");
+         num3 = int.Parse(Console.ReadLine());
+
+         int max = Math.Max(num1, Math.Max(num2, num3));
+         int min = Math.Min(num1, Math.Min(num2, num3));
+
+         Console.WriteLine("Максимальне число: " + max);
+         Console.WriteLine("Мінімальне число: " + min);
+
+
+        //5
+        double length, width;
+
+        Console.Write("Введіть довжину прямокутника: ");
+        length = double.Parse(Console.ReadLine());
+
+        Console.Write("Введіть ширину прямокутника: ");
+        width = double.Parse(Console.ReadLine());
+
+        double area = length * width;
+
+        Console.WriteLine("Площа прямокутника: " + area);
+
+
+        //6
+        int number;
+
+        Console.Write("Введіть число: ");
+        number = int.Parse(Console.ReadLine());
+
+        if (number % 2 == 0)
+        {
+            Console.WriteLine("Число є парним");
+        }
+        else
+        {
+            Console.WriteLine("Число є непарним");
+        }
+
+
+        //7
+        double celsius;
+
+        Console.Write("Введіть температуру в градусах Цельсія: ");
+        celsius = double.Parse(Console.ReadLine());
+
+        double farenheit = ((celsius * 9 / 5) + 32);
+
+        Console.WriteLine("Температура в градусах Фаренгейта: " + farenheit);
+
+    }
+}
