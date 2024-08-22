@@ -1,0 +1,149 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        double number;
+
+        Console.Write("Введіть число: ");
+        number = double.Parse(Console.ReadLine());
+
+        if (number > 0)
+        {
+            Console.WriteLine("Число є додатнім.");
+        }
+        else if (number < 0)
+        {
+            Console.WriteLine("Число є від'ємним.");
+        }
+        else
+        {
+            Console.WriteLine("Число рівне нулю.");
+        }
+
+
+        //2
+        int year;
+
+        Console.Write("Введіть рік: ");
+        year = int.Parse(Console.ReadLine());
+
+        bool isLeapYear = (year % 4 == 0 && year % 100 != 0);
+
+        if (isLeapYear)
+        {
+            Console.WriteLine(year + " є високосним роком");
+        }
+        else
+        {
+            Console.WriteLine(year + " не є високосним роком");
+        }
+
+
+        //4
+        Console.Write("Введіть букву: ");
+        char inputChar = Console.ReadKey().KeyChar;
+        Console.WriteLine();
+
+        bool isVowel = false;
+
+        switch (Char.ToLower(inputChar))
+        {
+            case 'a':
+            case 'e':
+            case 'i':
+            case 'o':
+            case 'u':
+                isVowel = true;
+                break;
+        }
+        if (isVowel)
+        {
+            Console.WriteLine(Це голосна буква.");
+        }
+        else
+        {
+            Console.WriteLine(Це приголосна буква");
+        }
+
+
+        //5
+        int num1, num2, num3;
+
+         Console.Write("Введіть перше число: ");
+         num1 = int.Parse(Console.ReadLine());
+
+         Console.Write("Введіть друге число: ");
+         num2 = int.Parse(Console.ReadLine());
+
+         Console.Write("Введіть третє число: ");
+         num3 = int.Parse(Console.ReadLine());
+
+         int max = Math.Max(num1, Math.Max(num2, num3));
+
+         Console.WriteLine("Максимальне число: " + max);
+
+
+         //6
+        Console.Write("Введіть вік: ");
+        int age = int.Parse(Console.ReadLine());
+
+        if (age >= 12 && age <= 18)
+        {
+            Console.WriteLine("Ти підліток");
+        }
+        else
+        {
+            Console.WriteLine("Ти не підліток");
+        }
+
+
+
+        //7
+        Console.Write("Введіть число: ");
+        int number = int.Parse(Console.ReadLine());
+
+        if (number % 2 == 0)
+        {
+            Console.WriteLine("Число є парним");
+        }
+        else
+        {
+            Console.WriteLine("Число є непарним");
+        }
+
+        if (number % 3 == 0)
+        {
+            Console.WriteLine("Число ділиться на 3");
+        }
+        else
+        {
+            Console.WriteLine("Число не ділиться на 3");
+        }
+
+
+        //8
+        Console.Write("Введіть довжину сторони a: ");
+        double a = double.Parse(Console.ReadLine());
+
+        Console.Write("Введіть довжину сторони b: ");
+        double b = double.Parse(Console.ReadLine());
+
+        Console.Write("Введіть довжину сторони c: ");
+        double c = double.Parse(Console.ReadLine());
+
+        if (a >= b && a >= c)
+        {
+            Console.WriteLine("Сторона a є найдовшою");
+        }
+        else if (b >= a && b >= c)
+        {
+            Console.WriteLine("Сторона b є найдовшою");
+        }
+        else
+        {
+            Console.WriteLine("Сторона c є найдовшою");
+        }
+    }
+}
