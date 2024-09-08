@@ -1,0 +1,162 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        for (int number = 2; number <= 20; number += 2)
+        {
+            Console.WriteLine(number);
+        }
+
+
+        //2
+        int sum = 0;
+
+        for (int x = 1; x <= 100; x++)
+        {
+            sum += x;
+        }
+        Console.WriteLine("Сума чисел від 1 до 100: " + sum);
+
+
+        //3
+        Console.Write("Введіть число: ");
+        int number = int.Parse(Console.ReadLine());
+
+        Console.WriteLine("Таблиця множення для числа " + number + ":");
+
+        for (int i = 1; i <= 10; i++)
+        {
+            int result = number * i;
+            Console.WriteLine(number + " x " + i + " = " + result);
+        }
+
+
+        //4
+        Console.Write("Введіть число: ");
+        int number = int.Parse(Console.ReadLine());
+
+        if (number < 0)
+        {
+            Console.WriteLine("Факторіал можна обчислити лише для додатніх чисел.");
+        }
+        else
+        {
+            long factorial = 1;
+
+            for (int i = 1; i <= number; i++)
+            {
+                factorial *= i;
+            }
+            Console.WriteLine("Факторіал числа " + number + " дорівнює " + factorial);
+        }
+
+
+        //5 
+        int lowerLimit = 1;
+        int upperLimit = 50;
+        int sum = 0;
+
+        for (int num = lowerLimit; num <= upperLimit; num++)
+        {
+            if (IsPrime(num))
+            {
+                sum += num;
+            }
+        }
+
+        Console.WriteLine($"Сума всіх простих чисел від {lowerLimit} до {upperLimit} дорівнює {sum}");
+    }
+
+    static bool IsPrime(int number)
+    {
+        if (number <= 1)
+            return false;
+        if (number == 2)
+            return true;
+        if (number % 2 == 0)
+            return false;
+
+        for (int i = 3; i <= Math.Sqrt(number); i += 2)
+        {
+            if (number % i == 0)
+                return false;
+        }
+
+        return true;
+
+
+        //6
+        Console.Write("Введіть десяткове число: ");
+        int decimalNumber = int.Parse(Console.ReadLine());
+
+        string binaryNumber = Convert.ToString(decimalNumber, 2);
+
+        Console.WriteLine("Двійковий запис числа " + decimalNumber + ": " + binaryNumber);
+
+
+        //7
+        Console.Write("Введіть максимальне число для суми Фібоначчі: ");
+        int max_number = int.Parse(Console.ReadLine());
+
+        int a = 0, b = 1, sum = 0, count = 0;
+
+        while (a < max_number)
+        {
+            (a, b) = (b, a + b);
+            if (a % 2 == 0)
+                sum += a;
+            count++;
+        }
+        Console.WriteLine("Сума чисел Фібоначчі менших за " + max_number + " дорівнює " + sum);
+        Console.WriteLine("Кількість елементів Фібоначчі: " + count);
+  //8
+
+    
+        Console.Write("Введіть перше число: ");
+        int num1 = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Введіть друге число: ");
+        int num2 = Convert.ToInt32(Console.ReadLine());
+
+        // Обчислення НСД
+        int gcd = ComputeGCD(num1, num2);
+
+   
+        Console.WriteLine($"Найбільший спільний дільник ({num1}, {num2}) дорівнює {gcd}");
+    }
+
+    // Метод для обчислення НСД за алгоритмом Евкліда
+    static int ComputeGCD(int a, int b)
+    {
+        while (b != 0)
+        {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
