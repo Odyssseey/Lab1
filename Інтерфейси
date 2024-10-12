@@ -1,0 +1,326 @@
+using System;
+
+public interface IVehicle
+{
+    void Start(); 
+    void Stop();  
+    void Drive();  
+}
+
+
+public class Car : IVehicle
+{
+    public string Model { get; set; }
+    public int Year { get; set; }
+
+    public Car(string model, int year)
+    {
+        Model = model;
+        Year = year;
+    }
+
+    public void Start()
+    {
+        Console.WriteLine(Model + " " + Year + " - Engine started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine(Model + " " + Year + " - Engine stopped.");
+    }
+
+    public void Drive()
+    {
+        Console.WriteLine(Model + " " + Year + " - Car is moving.");
+    }
+
+    public void Honk()
+    {
+        Console.WriteLine(Model + " " + Year + " - Honk! Honk!");
+    }
+}
+
+
+public class Motorcycle : IVehicle
+{
+    public string Brand { get; set; }
+    public string Model { get; set; }
+
+    public Motorcycle(string brand, string model)
+    {
+        Brand = brand;
+        Model = model;
+    }
+
+    public void Start()
+    {
+        Console.WriteLine(Brand + " " + Model + " - Engine started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine(Brand + " " + Model + " - Engine stopped.");
+    }
+
+    public void Drive()
+    {
+        Console.WriteLine(Brand + " " + Model + " - Motorcycle is on the move.");
+    }
+
+    public void Wheelie()
+    {
+        Console.WriteLine(Brand + " " + Model + " - Performing a wheelie!");
+    }
+}
+
+public class Truck : IVehicle
+{
+    public string Manufacturer { get; set; }
+    public double PayloadCapacity { get; set; }
+
+    public Truck(string manufacturer, double payloadCapacity)
+    {
+        Manufacturer = manufacturer;
+        PayloadCapacity = payloadCapacity;
+    }
+
+    public void Start()
+    {
+        Console.WriteLine(Manufacturer + " Truck - Engine started.");
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine(Manufacturer + " Truck - Engine stopped.");
+    }
+
+    public void Drive()
+    {
+        Console.WriteLine(Manufacturer + " Truck - Truck is in motion.");
+    }
+
+    public void LoadCargo()
+    {
+        Console.WriteLine(Manufacturer + " Truck - Loading cargo. Capacity: " + PayloadCapacity + " tons");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        Car car = new Car("Toyota Camry", 2022);
+        Motorcycle motorcycle = new Motorcycle("Harley Davidson", "Sportster");
+        Truck truck = new Truck("Volvo", 15.5);
+
+        TestVehicle(car);
+        TestVehicle(motorcycle);
+        TestVehicle(truck);
+
+        Console.ReadLine();
+    }
+
+    static void TestVehicle(IVehicle vehicle)
+    {
+        Console.WriteLine("Testing " + vehicle.GetType().Name);
+        vehicle.Start();
+        vehicle.Drive();
+        vehicle.Stop();
+
+        if (vehicle is Car)
+        {
+            ((Car)vehicle).Honk();
+        }
+        else if (vehicle is Motorcycle)
+        {
+            ((Motorcycle)vehicle).Wheelie();
+        }
+        else if (vehicle is Truck)
+        {
+            ((Truck)vehicle).LoadCargo();
+        }
+
+        Console.WriteLine();
+    }
+}
+
+
+//2
+public interface IPlayable
+{
+    void Play();  
+    void Pause(); 
+    void Stop(); 
+}
+public interface IRecordable
+{
+    void Record(); 
+}
+public class MusicTrack : IPlayable, IRecordable
+{
+    public string Title { get; set; }
+    public string Artist { get; set; }
+    public TimeSpan Duration { get; set; }
+
+    public MusicTrack(string title, string artist, TimeSpan duration)
+    {
+        Title = title;
+        Artist = artist;
+        Duration = duration;
+    }
+
+    public void Play()
+    {
+        Console.WriteLine("Playing '" + Title + "' by " + Artist + Duration.TotalMinutes + " minutes");
+    }
+
+    public void Pause()
+    {
+        Console.WriteLine("Pausing '" + Title + "' by " + Artist);
+    }
+
+    public void Stop()
+    {
+        Console.WriteLine("Stopping'" + Title + "' by " + Artist);
+    }
+
+    public void Record()
+    {
+        Console.WriteLine("Recording'" + Title + "' by " + Artist);
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+        MusicTrack track = new MusicTrack("Sommertime Sadness", "Lana del Rey", TimeSpan.FromMinutes ( 4.25));
+
+        TestPlayable(track);
+        TestRecordable(track);
+
+        Console.ReadLine();
+    }
+
+    static void TestPlayable(IPlayable playable)
+    {
+        Console.WriteLine("Testing IPlayable:");
+        playable.Play();
+        playable.Pause();
+        playable.Stop();
+        Console.WriteLine();
+    }
+
+    static void TestRecordable(IRecordable recordable)
+    {
+        Console.WriteLine("Testing IRecordable:");
+        recordable.Record();
+        Console.WriteLine();
+    }
+}
+
+
+
+//3
+public interface IProduct
+{
+    void DisplayInfo(); 
+}
+
+public interface IShoppable
+{
+    void AddToCart(); 
+public class ElectronicDevice : IProduct
+{
+    public string DeviceName { get; set; }
+    public string Manufacturer { get; set; }
+    public double Price { get; set; }
+
+    public ElectronicDevice(string deviceName, string manufacturer, double price)
+    {
+        DeviceName = deviceName;
+        Manufacturer = manufacturer;
+        Price = price;
+    }
+
+    public virtual void DisplayInfo()
+    {
+        Console.WriteLine("Device: " + DeviceName + "\nManufacturer: " + Manufacturer + "\nPrice: $" + Price);
+    }
+}
+
+public class Smartphone : ElectronicDevice, IShoppable
+{
+    public string OperatingSystem { get; set; }
+
+    public Smartphone(string deviceName, string manufacturer, double price, string operatingSystem)
+        : base(deviceName, manufacturer, price)
+    {
+        OperatingSystem = operatingSystem;
+    }
+
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine("Operating System: " + OperatingSystem);
+    }
+
+    public void AddToCart()
+    {
+        Console.WriteLine("Added " + DeviceName + " to the shopping cart.");
+    }
+}
+
+public class Laptop : ElectronicDevice, IShoppable
+{
+    public string Processor { get; set; }
+
+    public Laptop(string deviceName, string manufacturer, double price, string processor)
+        : base(deviceName, manufacturer, price)
+    {
+        Processor = processor;
+    }
+
+    public override void DisplayInfo()
+    {
+        base.DisplayInfo();
+        Console.WriteLine("Processor: " + Processor);
+    }
+
+    public void AddToCart()
+    {
+        Console.WriteLine("Added " + DeviceName + " to the shopping cart");
+    }
+}
+
+class Program
+{
+    static void Main()
+    {
+
+        Smartphone smartphone = new Smartphone("iPhone 12 Pro", "Apple", 999.99, "iOS");
+        Laptop laptop = new Laptop("Mac.os", "Air", 1099.99, "iOS");
+
+        TestProductInfo(smartphone);
+        TestProductInfo(laptop);
+
+        TestAddToCart(smartphone);
+        TestAddToCart(laptop);
+
+        Console.ReadLine(); 
+    }
+
+    static void TestProductInfo(IProduct product)
+    {
+        Console.WriteLine("Displaying product information:");
+        product.DisplayInfo();
+        Console.WriteLine();
+    }
+
+    static void TestAddToCart(IShoppable shoppable)
+    {
+        Console.WriteLine("Adding to the shopping cart:");
+        shoppable.AddToCart();
+        Console.WriteLine();
+    }
+}
